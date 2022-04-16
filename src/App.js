@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { ThemeContext } from "./contexts/ThemeContext.js";
-import { Formik } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import { LoginSchema } from "./constants/yupSchema.js";
 
 import Block1 from "./components/block1.js";
@@ -75,7 +75,7 @@ function App() {
             }}
             validationSchema={LoginSchema}
           >
-            {({ values, handleChange, handleSubmit, errors }) => (
+            {({ values, handleChange, handleSubmit }) => (
               <form>
                 <div id="nameForm">
                   <span id="firstNameBlock">
@@ -123,7 +123,7 @@ function App() {
                   </span>
                 </div>
                 <div className="warning" id="mailFormWarning">
-                  {errors.email}
+                <ErrorMessage name="email"/>
                 </div>
                 <div id="userForm">
                   <span className="textForm">
@@ -141,7 +141,7 @@ function App() {
                   </span>
                 </div>
                 <div className="warning" id="userFormWarning">
-                  {errors.username}
+                  <ErrorMessage name="username"/>
                 </div>
                 <div id="passForm">
                   <span className="textForm">
@@ -159,7 +159,7 @@ function App() {
                   </span>
                 </div>
                 <div className="warning" id="passFormWarning">
-                  {errors.pass}
+                <ErrorMessage name="pass"/>
                 </div>
                 <div id="repassForm">
                   <span className="textForm">
@@ -177,7 +177,7 @@ function App() {
                   </span>
                 </div>
                 <div className="warning" id="repassFormWarning">
-                  {errors.repass}
+                <ErrorMessage name="repass"/>
                 </div>
                 <label id="agreeForm">
                   <label for="agreeButton">Sözleşmeyi kabul ediyorum</label>
@@ -194,7 +194,7 @@ function App() {
                     }
                   ></div>
                 </label>
-                <div className="warning" id="agreeFormWarning">{errors.agree}</div>
+                <div className="warning" id="agreeFormWarning"><ErrorMessage name="agree"/></div>
                 <input
                   type="submit"
                   className={
